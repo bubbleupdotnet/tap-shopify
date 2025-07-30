@@ -1,3 +1,5 @@
+from datetime import timedelta
+from singer import metrics, utils
 from tap_shopify.context import Context
 from tap_shopify.streams.base import Stream
 
@@ -57,52 +59,52 @@ class Payouts(Stream):
                                 }
                                 summary {
                                     adjustmentsFee {
-                                    amount
-                                    currencyCode
+                                        amount
+                                        currencyCode
                                     }
                                     retriedPayoutsGross {
-                                    amount
-                                    currencyCode
+                                        amount
+                                        currencyCode
                                     }
                                     retriedPayoutsFee {
-                                    amount
-                                    currencyCode
+                                        amount
+                                        currencyCode
                                     }
                                     reservedFundsGross {
-                                    amount
-                                    currencyCode
+                                        amount
+                                        currencyCode
                                     }
                                     reservedFundsFee {
-                                    amount
-                                    currencyCode
+                                        amount
+                                        currencyCode
                                     }
                                     refundsFeeGross {
-                                    amount
-                                    currencyCode
+                                        amount
+                                        currencyCode
                                     }
                                     refundsFee {
-                                    amount
-                                    currencyCode
+                                        amount
+                                        currencyCode
                                     }
                                     chargesGross {
-                                    amount
-                                    currencyCode
+                                        amount
+                                        currencyCode
                                     }
                                     chargesFee {
-                                    amount
-                                    currencyCode
+                                        amount
+                                        currencyCode
                                     }
                                     advanceGross {
-                                    amount
-                                    currencyCode
+                                        amount
+                                        currencyCode
                                     }
                                     advanceFees {
-                                    amount
-                                    currencyCode
+                                        amount
+                                        currencyCode
                                     }
                                     adjustmentsGross {
-                                    amount
-                                    currencyCode
+                                        amount
+                                        currencyCode
                                     }
                                 }
                                 gross {
@@ -112,8 +114,8 @@ class Payouts(Stream):
                             }
                         }
                         pageInfo {
-                        endCursor
-                        hasNextPage
+                            endCursor
+                            hasNextPage
                         }
                     }
                 }
