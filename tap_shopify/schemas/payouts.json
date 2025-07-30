@@ -1,0 +1,332 @@
+{
+    "type": "object",
+    "properties": {
+        "id": {
+            "type": [
+                "null",
+                "string"
+            ]
+        },
+        "issuedAt": {
+            "type": [
+                "null",
+                "string"
+            ],
+            "format": "date-time"
+        },
+        "gross": {
+            "type": [
+                "null",
+                "object"
+            ],
+            "properties": {
+                "amount": {
+                    "type": [
+                        "null",
+                        "string"
+                    ],
+                    "format": "singer.decimal"
+                },
+                "currencyCode": {
+                    "type": [
+                        "null",
+                        "string"
+                    ]
+                }
+            }
+        },
+        "status": {
+            "type": [
+                "null",
+                "string"
+            ]
+        },
+        "transactionType": {
+            "type": [
+                "null",
+                "string"
+            ]
+        },
+        "net": {
+            "type": [
+                "null",
+                "object"
+            ],
+            "properties": {
+                "amount": {
+                    "type": [
+                        "null",
+                        "string"
+                    ],
+                    "format": "singer.decimal"
+                },
+                "currencyCode": {
+                    "type": [
+                        "null",
+                        "string"
+                    ]
+                }
+            }
+        },
+        "summary": {
+            "type": [
+                "null",
+                "object"
+            ],
+            "properties": {
+                "retriedPayoutsGross": {
+                    "type": [
+                        "null",
+                        "object"
+                    ],
+                    "properties": {
+                        "currencyCode": {
+                            "type": [
+                                "null",
+                                "string"
+                            ]
+                        },
+                        "amount": {
+                            "type": [
+                                "null",
+                                "string"
+                            ],
+                            "format": "singer.decimal"
+                        }
+                    }
+                },
+                "retriedPayoutsFee": {
+                    "type": [
+                        "null",
+                        "object"
+                    ],
+                    "properties": {
+                        "currencyCode": {
+                            "type": [
+                                "null",
+                                "string"
+                            ]
+                        },
+                        "amount": {
+                            "type": [
+                                "null",
+                                "string"
+                            ],
+                            "format": "singer.decimal"
+                        }
+                    }
+                },
+                "reservedFundsGross": {
+                    "type": [
+                        "null",
+                        "object"
+                    ],
+                    "properties": {
+                        "currencyCode": {
+                            "type": [
+                                "null",
+                                "string"
+                            ]
+                        },
+                        "amount": {
+                            "type": [
+                                "null",
+                                "string"
+                            ],
+                            "format": "singer.decimal"
+                        }
+                    }
+                },
+                "reservedFundsFee": {
+                    "type": [
+                        "null",
+                        "object"
+                    ],
+                    "properties": {
+                        "currencyCode": {
+                            "type": [
+                                "null",
+                                "string"
+                            ]
+                        },
+                        "amount": {
+                            "type": [
+                                "null",
+                                "string"
+                            ],
+                            "format": "singer.decimal"
+                        }
+                    }
+                },
+                "refundsFeeGross": {
+                    "type": [
+                        "null",
+                        "object"
+                    ],
+                    "properties": {
+                        "currencyCode": {
+                            "type": [
+                                "null",
+                                "string"
+                            ]
+                        },
+                        "amount": {
+                            "type": [
+                                "null",
+                                "string"
+                            ],
+                            "format": "singer.decimal"
+                        }
+                    }
+                },
+                "refundsFee": {
+                    "type": [
+                        "null",
+                        "object"
+                    ],
+                    "properties": {
+                        "currencyCode": {
+                            "type": [
+                                "null",
+                                "string"
+                            ]
+                        },
+                        "amount": {
+                            "type": [
+                                "null",
+                                "string"
+                            ],
+                            "format": "singer.decimal"
+                        }
+                    }
+                },
+                "chargesGross": {
+                    "type": [
+                        "null",
+                        "object"
+                    ],
+                    "properties": {
+                        "currencyCode": {
+                            "type": [
+                                "null",
+                                "string"
+                            ]
+                        },
+                        "amount": {
+                            "type": [
+                                "null",
+                                "string"
+                            ],
+                            "format": "singer.decimal"
+                        }
+                    }
+                },
+                "chargesFee": {
+                    "type": [
+                        "null",
+                        "object"
+                    ],
+                    "properties": {
+                        "currencyCode": {
+                            "type": [
+                                "null",
+                                "string"
+                            ]
+                        },
+                        "amount": {
+                            "type": [
+                                "null",
+                                "string"
+                            ],
+                            "format": "singer.decimal"
+                        }
+                    }
+                },
+                "advanceGross": {
+                    "type": [
+                        "null",
+                        "object"
+                    ],
+                    "properties": {
+                        "currencyCode": {
+                            "type": [
+                                "null",
+                                "string"
+                            ]
+                        },
+                        "amount": {
+                            "type": [
+                                "null",
+                                "string"
+                            ],
+                            "format": "singer.decimal"
+                        }
+                    }
+                },
+                "advanceFees": {
+                    "type": [
+                        "null",
+                        "object"
+                    ],
+                    "properties": {
+                        "currencyCode": {
+                            "type": [
+                                "null",
+                                "string"
+                            ]
+                        },
+                        "amount": {
+                            "type": [
+                                "null",
+                                "string"
+                            ],
+                            "format": "singer.decimal"
+                        }
+                    }
+                },
+                "adjustmentsGross": {
+                    "type": [
+                        "null",
+                        "object"
+                    ],
+                    "properties": {
+                        "currencyCode": {
+                            "type": [
+                                "null",
+                                "string"
+                            ]
+                        },
+                        "amount": {
+                            "type": [
+                                "null",
+                                "string"
+                            ],
+                            "format": "singer.decimal"
+                        }
+                    }
+                },
+                "adjustmentsFee": {
+                    "type": [
+                        "null",
+                        "object"
+                    ],
+                    "properties": {
+                        "currencyCode": {
+                            "type": [
+                                "null",
+                                "string"
+                            ]
+                        },
+                        "amount": {
+                            "type": [
+                                "null",
+                                "string"
+                            ],
+                            "format": "singer.decimal"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
