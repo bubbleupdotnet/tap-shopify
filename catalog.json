@@ -12419,8 +12419,7 @@
             "forced-replication-method": "INCREMENTAL",
             "valid-replication-keys": [
               "updatedAt"
-            ],
-            "selected": true
+            ]
           }
         },
         {
@@ -13337,6 +13336,470 @@
         "id"
       ],
       "replication_key": "updatedAt",
+      "replication_method": "INCREMENTAL"
+    },
+    {
+      "stream": "payouts",
+      "tap_stream_id": "payouts",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "issuedAt": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "format": "date-time"
+          },
+          "gross": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "properties": {
+              "amount": {
+                "type": [
+                  "null",
+                  "string"
+                ],
+                "format": "singer.decimal"
+              },
+              "currencyCode": {
+                "type": [
+                  "null",
+                  "string"
+                ]
+              }
+            }
+          },
+          "status": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "transactionType": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "net": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "properties": {
+              "amount": {
+                "type": [
+                  "null",
+                  "string"
+                ],
+                "format": "singer.decimal"
+              },
+              "currencyCode": {
+                "type": [
+                  "null",
+                  "string"
+                ]
+              }
+            }
+          },
+          "summary": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "properties": {
+              "retriedPayoutsGross": {
+                "type": [
+                  "null",
+                  "object"
+                ],
+                "properties": {
+                  "currencyCode": {
+                    "type": [
+                      "null",
+                      "string"
+                    ]
+                  },
+                  "amount": {
+                    "type": [
+                      "null",
+                      "string"
+                    ],
+                    "format": "singer.decimal"
+                  }
+                }
+              },
+              "retriedPayoutsFee": {
+                "type": [
+                  "null",
+                  "object"
+                ],
+                "properties": {
+                  "currencyCode": {
+                    "type": [
+                      "null",
+                      "string"
+                    ]
+                  },
+                  "amount": {
+                    "type": [
+                      "null",
+                      "string"
+                    ],
+                    "format": "singer.decimal"
+                  }
+                }
+              },
+              "reservedFundsGross": {
+                "type": [
+                  "null",
+                  "object"
+                ],
+                "properties": {
+                  "currencyCode": {
+                    "type": [
+                      "null",
+                      "string"
+                    ]
+                  },
+                  "amount": {
+                    "type": [
+                      "null",
+                      "string"
+                    ],
+                    "format": "singer.decimal"
+                  }
+                }
+              },
+              "reservedFundsFee": {
+                "type": [
+                  "null",
+                  "object"
+                ],
+                "properties": {
+                  "currencyCode": {
+                    "type": [
+                      "null",
+                      "string"
+                    ]
+                  },
+                  "amount": {
+                    "type": [
+                      "null",
+                      "string"
+                    ],
+                    "format": "singer.decimal"
+                  }
+                }
+              },
+              "refundsFeeGross": {
+                "type": [
+                  "null",
+                  "object"
+                ],
+                "properties": {
+                  "currencyCode": {
+                    "type": [
+                      "null",
+                      "string"
+                    ]
+                  },
+                  "amount": {
+                    "type": [
+                      "null",
+                      "string"
+                    ],
+                    "format": "singer.decimal"
+                  }
+                }
+              },
+              "refundsFee": {
+                "type": [
+                  "null",
+                  "object"
+                ],
+                "properties": {
+                  "currencyCode": {
+                    "type": [
+                      "null",
+                      "string"
+                    ]
+                  },
+                  "amount": {
+                    "type": [
+                      "null",
+                      "string"
+                    ],
+                    "format": "singer.decimal"
+                  }
+                }
+              },
+              "chargesGross": {
+                "type": [
+                  "null",
+                  "object"
+                ],
+                "properties": {
+                  "currencyCode": {
+                    "type": [
+                      "null",
+                      "string"
+                    ]
+                  },
+                  "amount": {
+                    "type": [
+                      "null",
+                      "string"
+                    ],
+                    "format": "singer.decimal"
+                  }
+                }
+              },
+              "chargesFee": {
+                "type": [
+                  "null",
+                  "object"
+                ],
+                "properties": {
+                  "currencyCode": {
+                    "type": [
+                      "null",
+                      "string"
+                    ]
+                  },
+                  "amount": {
+                    "type": [
+                      "null",
+                      "string"
+                    ],
+                    "format": "singer.decimal"
+                  }
+                }
+              },
+              "advanceGross": {
+                "type": [
+                  "null",
+                  "object"
+                ],
+                "properties": {
+                  "currencyCode": {
+                    "type": [
+                      "null",
+                      "string"
+                    ]
+                  },
+                  "amount": {
+                    "type": [
+                      "null",
+                      "string"
+                    ],
+                    "format": "singer.decimal"
+                  }
+                }
+              },
+              "advanceFees": {
+                "type": [
+                  "null",
+                  "object"
+                ],
+                "properties": {
+                  "currencyCode": {
+                    "type": [
+                      "null",
+                      "string"
+                    ]
+                  },
+                  "amount": {
+                    "type": [
+                      "null",
+                      "string"
+                    ],
+                    "format": "singer.decimal"
+                  }
+                }
+              },
+              "adjustmentsGross": {
+                "type": [
+                  "null",
+                  "object"
+                ],
+                "properties": {
+                  "currencyCode": {
+                    "type": [
+                      "null",
+                      "string"
+                    ]
+                  },
+                  "amount": {
+                    "type": [
+                      "null",
+                      "string"
+                    ],
+                    "format": "singer.decimal"
+                  }
+                }
+              },
+              "adjustmentsFee": {
+                "type": [
+                  "null",
+                  "object"
+                ],
+                "properties": {
+                  "currencyCode": {
+                    "type": [
+                      "null",
+                      "string"
+                    ]
+                  },
+                  "amount": {
+                    "type": [
+                      "null",
+                      "string"
+                    ],
+                    "format": "singer.decimal"
+                  }
+                }
+              }
+            }
+          },
+          "_sdc_shop_id": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "_sdc_shop_name": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "_sdc_shop_myshopify_domain": {
+            "type": [
+              "null",
+              "string"
+            ]
+          }
+        }
+      },
+      "metadata": [
+        {
+          "breadcrumb": [],
+          "metadata": {
+            "table-key-properties": [
+              "id"
+            ],
+            "forced-replication-method": "INCREMENTAL",
+            "valid-replication-keys": [
+              "issuedAt"
+            ],
+            "selected": true
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "id"
+          ],
+          "metadata": {
+            "inclusion": "automatic"
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "issuedAt"
+          ],
+          "metadata": {
+            "inclusion": "automatic"
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "gross"
+          ],
+          "metadata": {
+            "inclusion": "available"
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "status"
+          ],
+          "metadata": {
+            "inclusion": "available"
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "transactionType"
+          ],
+          "metadata": {
+            "inclusion": "available"
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "net"
+          ],
+          "metadata": {
+            "inclusion": "available"
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "summary"
+          ],
+          "metadata": {
+            "inclusion": "available"
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "_sdc_shop_id"
+          ],
+          "metadata": {
+            "inclusion": "available"
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "_sdc_shop_name"
+          ],
+          "metadata": {
+            "inclusion": "available"
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "_sdc_shop_myshopify_domain"
+          ],
+          "metadata": {
+            "inclusion": "available"
+          }
+        }
+      ],
+      "key_properties": [
+        "id"
+      ],
+      "replication_key": "issuedAt",
       "replication_method": "INCREMENTAL"
     },
     {
