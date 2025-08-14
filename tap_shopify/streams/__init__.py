@@ -18,3 +18,5 @@ import tap_shopify.streams.fulfillment_orders
 import tap_shopify.streams.order_shipping_lines
 import tap_shopify.streams.payouts
 import tap_shopify.streams.balance_transactions
+import tap_shopify.streams.balance_transactions_transfers
+import tap_shopify.streams.balance_transactions_nontransfers

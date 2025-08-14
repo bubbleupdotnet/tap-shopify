@@ -1812,6 +1812,868 @@
       "replication_method": "INCREMENTAL"
     },
     {
+      "stream": "balance_transactions_nontransfers",
+      "tap_stream_id": "balance_transactions_nontransfers",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "adjustmentsOrders": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "type": [
+                "null",
+                "object"
+              ],
+              "properties": {
+                "amount": {
+                  "type": [
+                    "null",
+                    "object"
+                  ],
+                  "properties": {
+                    "amount": {
+                      "type": [
+                        "null",
+                        "string"
+                      ],
+                      "format": "singer.decimal"
+                    },
+                    "currencyCode": {
+                      "type": [
+                        "null",
+                        "string"
+                      ]
+                    }
+                  }
+                },
+                "fees": {
+                  "type": [
+                    "null",
+                    "object"
+                  ],
+                  "properties": {
+                    "amount": {
+                      "type": [
+                        "null",
+                        "string"
+                      ],
+                      "format": "singer.decimal"
+                    },
+                    "currencyCode": {
+                      "type": [
+                        "null",
+                        "string"
+                      ]
+                    }
+                  }
+                },
+                "link": {
+                  "type": [
+                    "null",
+                    "string"
+                  ]
+                },
+                "name": {
+                  "type": [
+                    "null",
+                    "string"
+                  ]
+                },
+                "net": {
+                  "type": [
+                    "null",
+                    "object"
+                  ],
+                  "properties": {
+                    "amount": {
+                      "type": [
+                        "null",
+                        "string"
+                      ],
+                      "format": "singer.decimal"
+                    },
+                    "currencyCode": {
+                      "type": [
+                        "null",
+                        "string"
+                      ]
+                    }
+                  }
+                },
+                "orderTransactionId": {
+                  "type": [
+                    "null",
+                    "string"
+                  ]
+                }
+              }
+            }
+          },
+          "amount": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "properties": {
+              "amount": {
+                "type": [
+                  "null",
+                  "string"
+                ],
+                "format": "singer.decimal"
+              },
+              "currencyCode": {
+                "type": [
+                  "null",
+                  "string"
+                ]
+              }
+            }
+          },
+          "associatedOrder": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "properties": {
+              "name": {
+                "type": [
+                  "null",
+                  "string"
+                ]
+              },
+              "id": {
+                "type": [
+                  "null",
+                  "string"
+                ]
+              }
+            }
+          },
+          "associatedPayout": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "properties": {
+              "status": {
+                "type": [
+                  "null",
+                  "string"
+                ]
+              },
+              "id": {
+                "type": [
+                  "null",
+                  "string"
+                ]
+              }
+            }
+          },
+          "fee": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "properties": {
+              "amount": {
+                "type": [
+                  "null",
+                  "string"
+                ],
+                "format": "singer.decimal"
+              },
+              "currencyCode": {
+                "type": [
+                  "null",
+                  "string"
+                ]
+              }
+            }
+          },
+          "id": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "net": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "properties": {
+              "amount": {
+                "type": [
+                  "null",
+                  "string"
+                ],
+                "format": "singer.decimal"
+              },
+              "currencyCode": {
+                "type": [
+                  "null",
+                  "string"
+                ]
+              }
+            }
+          },
+          "sourceOrderTransactionId": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "sourceId": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "sourceType": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "transactionDate": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "format": "date-time"
+          },
+          "type": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "adjustmentReason": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "_sdc_shop_id": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "_sdc_shop_name": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "_sdc_shop_myshopify_domain": {
+            "type": [
+              "null",
+              "string"
+            ]
+          }
+        }
+      },
+      "metadata": [
+        {
+          "breadcrumb": [],
+          "metadata": {
+            "table-key-properties": [
+              "id"
+            ],
+            "forced-replication-method": "INCREMENTAL",
+            "valid-replication-keys": [
+              "transactionDate"
+            ]
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "adjustmentsOrders"
+          ],
+          "metadata": {
+            "inclusion": "available"
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "amount"
+          ],
+          "metadata": {
+            "inclusion": "available"
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "associatedOrder"
+          ],
+          "metadata": {
+            "inclusion": "available"
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "associatedPayout"
+          ],
+          "metadata": {
+            "inclusion": "available"
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "fee"
+          ],
+          "metadata": {
+            "inclusion": "available"
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "id"
+          ],
+          "metadata": {
+            "inclusion": "automatic"
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "net"
+          ],
+          "metadata": {
+            "inclusion": "available"
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "sourceOrderTransactionId"
+          ],
+          "metadata": {
+            "inclusion": "available"
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "sourceId"
+          ],
+          "metadata": {
+            "inclusion": "available"
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "sourceType"
+          ],
+          "metadata": {
+            "inclusion": "available"
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "transactionDate"
+          ],
+          "metadata": {
+            "inclusion": "automatic"
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "type"
+          ],
+          "metadata": {
+            "inclusion": "available"
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "adjustmentReason"
+          ],
+          "metadata": {
+            "inclusion": "available"
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "_sdc_shop_id"
+          ],
+          "metadata": {
+            "inclusion": "available"
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "_sdc_shop_name"
+          ],
+          "metadata": {
+            "inclusion": "available"
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "_sdc_shop_myshopify_domain"
+          ],
+          "metadata": {
+            "inclusion": "available"
+          }
+        }
+      ],
+      "key_properties": [
+        "id"
+      ],
+      "replication_key": "transactionDate",
+      "replication_method": "INCREMENTAL"
+    },
+    {
+      "stream": "balance_transactions_transfers",
+      "tap_stream_id": "balance_transactions_transfers",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "adjustmentsOrders": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "type": [
+                "null",
+                "object"
+              ],
+              "properties": {
+                "amount": {
+                  "type": [
+                    "null",
+                    "object"
+                  ],
+                  "properties": {
+                    "amount": {
+                      "type": [
+                        "null",
+                        "string"
+                      ],
+                      "format": "singer.decimal"
+                    },
+                    "currencyCode": {
+                      "type": [
+                        "null",
+                        "string"
+                      ]
+                    }
+                  }
+                },
+                "fees": {
+                  "type": [
+                    "null",
+                    "object"
+                  ],
+                  "properties": {
+                    "amount": {
+                      "type": [
+                        "null",
+                        "string"
+                      ],
+                      "format": "singer.decimal"
+                    },
+                    "currencyCode": {
+                      "type": [
+                        "null",
+                        "string"
+                      ]
+                    }
+                  }
+                },
+                "link": {
+                  "type": [
+                    "null",
+                    "string"
+                  ]
+                },
+                "name": {
+                  "type": [
+                    "null",
+                    "string"
+                  ]
+                },
+                "net": {
+                  "type": [
+                    "null",
+                    "object"
+                  ],
+                  "properties": {
+                    "amount": {
+                      "type": [
+                        "null",
+                        "string"
+                      ],
+                      "format": "singer.decimal"
+                    },
+                    "currencyCode": {
+                      "type": [
+                        "null",
+                        "string"
+                      ]
+                    }
+                  }
+                },
+                "orderTransactionId": {
+                  "type": [
+                    "null",
+                    "string"
+                  ]
+                }
+              }
+            }
+          },
+          "amount": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "properties": {
+              "amount": {
+                "type": [
+                  "null",
+                  "string"
+                ],
+                "format": "singer.decimal"
+              },
+              "currencyCode": {
+                "type": [
+                  "null",
+                  "string"
+                ]
+              }
+            }
+          },
+          "associatedOrder": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "properties": {
+              "name": {
+                "type": [
+                  "null",
+                  "string"
+                ]
+              },
+              "id": {
+                "type": [
+                  "null",
+                  "string"
+                ]
+              }
+            }
+          },
+          "associatedPayout": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "properties": {
+              "status": {
+                "type": [
+                  "null",
+                  "string"
+                ]
+              },
+              "id": {
+                "type": [
+                  "null",
+                  "string"
+                ]
+              }
+            }
+          },
+          "fee": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "properties": {
+              "amount": {
+                "type": [
+                  "null",
+                  "string"
+                ],
+                "format": "singer.decimal"
+              },
+              "currencyCode": {
+                "type": [
+                  "null",
+                  "string"
+                ]
+              }
+            }
+          },
+          "id": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "net": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "properties": {
+              "amount": {
+                "type": [
+                  "null",
+                  "string"
+                ],
+                "format": "singer.decimal"
+              },
+              "currencyCode": {
+                "type": [
+                  "null",
+                  "string"
+                ]
+              }
+            }
+          },
+          "sourceOrderTransactionId": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "sourceId": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "sourceType": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "transactionDate": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "format": "date-time"
+          },
+          "type": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "adjustmentReason": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "_sdc_shop_id": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "_sdc_shop_name": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "_sdc_shop_myshopify_domain": {
+            "type": [
+              "null",
+              "string"
+            ]
+          }
+        }
+      },
+      "metadata": [
+        {
+          "breadcrumb": [],
+          "metadata": {
+            "table-key-properties": [
+              "id"
+            ],
+            "forced-replication-method": "INCREMENTAL",
+            "valid-replication-keys": [
+              "transactionDate"
+            ]
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "adjustmentsOrders"
+          ],
+          "metadata": {
+            "inclusion": "available"
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "amount"
+          ],
+          "metadata": {
+            "inclusion": "available"
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "associatedOrder"
+          ],
+          "metadata": {
+            "inclusion": "available"
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "associatedPayout"
+          ],
+          "metadata": {
+            "inclusion": "available"
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "fee"
+          ],
+          "metadata": {
+            "inclusion": "available"
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "id"
+          ],
+          "metadata": {
+            "inclusion": "automatic"
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "net"
+          ],
+          "metadata": {
+            "inclusion": "available"
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "sourceOrderTransactionId"
+          ],
+          "metadata": {
+            "inclusion": "available"
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "sourceId"
+          ],
+          "metadata": {
+            "inclusion": "available"
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "sourceType"
+          ],
+          "metadata": {
+            "inclusion": "available"
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "transactionDate"
+          ],
+          "metadata": {
+            "inclusion": "automatic"
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "type"
+          ],
+          "metadata": {
+            "inclusion": "available"
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "adjustmentReason"
+          ],
+          "metadata": {
+            "inclusion": "available"
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "_sdc_shop_id"
+          ],
+          "metadata": {
+            "inclusion": "available"
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "_sdc_shop_name"
+          ],
+          "metadata": {
+            "inclusion": "available"
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "_sdc_shop_myshopify_domain"
+          ],
+          "metadata": {
+            "inclusion": "available"
+          }
+        }
+      ],
+      "key_properties": [
+        "id"
+      ],
+      "replication_key": "transactionDate",
+      "replication_method": "INCREMENTAL"
+    },
+    {
       "stream": "collections",
       "tap_stream_id": "collections",
       "schema": {
@@ -7439,7 +8301,10 @@
             }
           },
           "orderAdjustments": {
-            "type": "array",
+            "type": [
+              "null",
+              "array"
+            ],
             "items": {
               "type": [
                 "null",
@@ -9287,6 +10152,32 @@
               "number"
             ]
           },
+          "customAttributes": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "type": [
+                "null",
+                "object"
+              ],
+              "properties": {
+                "key": {
+                  "type": [
+                    "null",
+                    "string"
+                  ]
+                },
+                "value": {
+                  "type": [
+                    "null",
+                    "string"
+                  ]
+                }
+              }
+            }
+          },
           "customer": {
             "type": [
               "null",
@@ -9581,23 +10472,63 @@
               "null",
               "object"
             ],
-            "lastVisit": {
-              "type": [
-                "null",
-                "object"
-              ],
-              "properties": {
-                "landingPage": {
-                  "type": [
-                    "null",
-                    "string"
-                  ]
-                },
-                "referrerUrl": {
-                  "type": [
-                    "null",
-                    "string"
-                  ]
+            "properties": {
+              "lastVisit": {
+                "type": [
+                  "null",
+                  "object"
+                ],
+                "properties": {
+                  "landingPage": {
+                    "type": [
+                      "null",
+                      "string"
+                    ]
+                  },
+                  "referrerUrl": {
+                    "type": [
+                      "null",
+                      "string"
+                    ]
+                  }
+                }
+              },
+              "utmParameters": {
+                "type": [
+                  "null",
+                  "object"
+                ],
+                "properties": {
+                  "campaign": {
+                    "type": [
+                      "null",
+                      "string"
+                    ]
+                  },
+                  "content": {
+                    "type": [
+                      "null",
+                      "string"
+                    ]
+                  },
+                  "medium": {
+                    "type": [
+                      "null",
+                      "string"
+                    ]
+                  },
+                  "source": {
+                    "type": [
+                      "null",
+                      "string"
+                    ]
+                  },
+                  "term": {
+                    "type": [
+                      "null",
+                      "string"
+                    ]
+                  }
                 }
               }
             }
@@ -9841,6 +10772,12 @@
             "type": [
               "null",
               "string"
+            ]
+          },
+          "number": {
+            "type": [
+              "null",
+              "number"
             ]
           },
           "netPaymentSet": {
@@ -11150,6 +12087,13 @@
                   ],
                   "format": "date-time"
                 },
+                "createdAt": {
+                  "type": [
+                    "null",
+                    "string"
+                  ],
+                  "format": "date-time"
+                },
                 "deliveredAt": {
                   "type": [
                     "null",
@@ -12063,6 +13007,67 @@
                       ]
                     }
                   }
+                },
+                "lineItemGroup": {
+                  "type": [
+                    "null",
+                    "object"
+                  ],
+                  "properties": {
+                    "customAttributes": {
+                      "type": [
+                        "null",
+                        "array"
+                      ],
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "key": {
+                            "type": [
+                              "null",
+                              "string"
+                            ]
+                          },
+                          "value": {
+                            "type": [
+                              "null",
+                              "string"
+                            ]
+                          }
+                        }
+                      }
+                    },
+                    "id": {
+                      "type": [
+                        "null",
+                        "string"
+                      ]
+                    },
+                    "quantity": {
+                      "type": [
+                        "null",
+                        "integer"
+                      ]
+                    },
+                    "title": {
+                      "type": [
+                        "null",
+                        "string"
+                      ]
+                    },
+                    "variantId": {
+                      "type": [
+                        "null",
+                        "string"
+                      ]
+                    },
+                    "variantSku": {
+                      "type": [
+                        "null",
+                        "string"
+                      ]
+                    }
+                  }
                 }
               }
             }
@@ -12818,6 +13823,100 @@
               }
             }
           },
+          "discountApplications": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "type": [
+                "null",
+                "object"
+              ],
+              "properties": {
+                "allocationMethod": {
+                  "type": [
+                    "null",
+                    "string"
+                  ]
+                },
+                "index": {
+                  "type": [
+                    "null",
+                    "integer"
+                  ]
+                },
+                "targetSelection": {
+                  "type": [
+                    "null",
+                    "string"
+                  ]
+                },
+                "targetType": {
+                  "type": [
+                    "null",
+                    "string"
+                  ]
+                },
+                "value": {
+                  "type": [
+                    "null",
+                    "object"
+                  ],
+                  "properties": {
+                    "__typename": {
+                      "type": [
+                        "null",
+                        "string"
+                      ]
+                    },
+                    "amount": {
+                      "type": [
+                        "null",
+                        "number"
+                      ]
+                    },
+                    "currencyCode": {
+                      "type": [
+                        "null",
+                        "string"
+                      ]
+                    },
+                    "percentage": {
+                      "type": [
+                        "null",
+                        "number"
+                      ]
+                    }
+                  }
+                },
+                "__typename": {
+                  "type": [
+                    "null",
+                    "string"
+                  ]
+                },
+                "title": {
+                  "type": [
+                    "null",
+                    "string"
+                  ]
+                },
+                "description": {
+                  "type": [
+                    "null",
+                    "string"
+                  ]
+                },
+                "code": {
+                  "type": [
+                    "null",
+                    "string"
+                  ]
+                }
+              }
+            }
+          },
           "_sdc_shop_id": {
             "type": [
               "null",
@@ -13115,6 +14214,15 @@
         {
           "breadcrumb": [
             "properties",
+            "customAttributes"
+          ],
+          "metadata": {
+            "inclusion": "available"
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
             "customer"
           ],
           "metadata": {
@@ -13314,6 +14422,15 @@
           "breadcrumb": [
             "properties",
             "note"
+          ],
+          "metadata": {
+            "inclusion": "available"
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "number"
           ],
           "metadata": {
             "inclusion": "available"
@@ -13728,6 +14845,15 @@
           "breadcrumb": [
             "properties",
             "retailLocation"
+          ],
+          "metadata": {
+            "inclusion": "available"
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "discountApplications"
           ],
           "metadata": {
             "inclusion": "available"
