@@ -145,6 +145,21 @@ def sync():
     shop_attributes = initialize_shopify_client()
     sdc_fields = {"_sdc_shop_" + x: shop_attributes[x] for x in SDC_KEYS}
     require_reauth = False
+    state = None
+    try:
+        with open("state.json") as f:
+            state = json.load(f)
+            Context.state = state
+    except Exception as e:
+        print(e)
+
+    print(" ")
+    print("~~~~~~~!!!!!!! Context.state")
+    print(" ")
+    print(state)
+    print(" ")
+    print("~~~~~~~!!!!!!! Context.state")
+    print(" ")
 
     # If there is a currently syncing stream bookmark, shuffle the
     # stream order so it gets sync'd first
