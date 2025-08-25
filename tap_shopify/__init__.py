@@ -151,15 +151,7 @@ def sync():
             state = json.load(f)
             Context.state = state
     except Exception as e:
-        print(e)
-
-    print(" ")
-    print("~~~~~~~!!!!!!! Context.state")
-    print(" ")
-    print(state)
-    print(" ")
-    print("~~~~~~~!!!!!!! Context.state")
-    print(" ")
+        LOGGER.warning("No state file")
 
     # If there is a currently syncing stream bookmark, shuffle the
     # stream order so it gets sync'd first
