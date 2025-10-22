@@ -146,7 +146,7 @@ def sync():
     sdc_fields = {"_sdc_shop_" + x: shop_attributes[x] for x in SDC_KEYS}
     require_reauth = False
     state = None
-    file_path = "../config/state.json"
+    file_path = "config/state.json"
     try:
         with open(file_path, 'r') as f:
             state = json.load(f)
