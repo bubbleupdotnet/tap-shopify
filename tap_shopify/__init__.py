@@ -146,12 +146,15 @@ def sync():
     sdc_fields = {"_sdc_shop_" + x: shop_attributes[x] for x in SDC_KEYS}
     require_reauth = False
     state = None
+    file_path = "../config/state.json"
     try:
-        with open("state.json") as f:
+        with open(file_path, 'r') as f:
             state = json.load(f)
+            LOGGER.info('STATE: ', state)
             Context.state = state
     except Exception as e:
-        LOGGER.warning("No state file")
+        LOGGER.info('NO STATE FILE: ', e)
+        #LOGGER.warning("No state file")
 
     # If there is a currently syncing stream bookmark, shuffle the
     # stream order so it gets sync'd first
