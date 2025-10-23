@@ -150,10 +150,10 @@ def sync():
     try:
         with open(file_path, 'r') as f:
             state = json.load(f)
-            LOGGER.info('STATE: ', state)
+            LOGGER.info(f"STATE: {state}")
             Context.state = state
     except Exception as e:
-        LOGGER.info('NO STATE FILE: ', e)
+        LOGGER.warning(f"NO STATE FILE: {e}")
         #LOGGER.warning("No state file")
 
     # If there is a currently syncing stream bookmark, shuffle the
