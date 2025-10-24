@@ -200,6 +200,7 @@ def sync():
                     singer.write_record(stream_id,
                                         rec,
                                         time_extracted=extraction_time)
+                    #TODO: break if count equals or greater than number to avoid whole process timing out.
                     Context.counts[stream_id] += 1
         except ShopifyAPIError as e:
             if stream_id == 'fulfillment_orders' and 'Access denied' in str(e.__cause__):
