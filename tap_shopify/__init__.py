@@ -200,7 +200,6 @@ def sync():
                     singer.write_record(stream_id,
                                         rec,
                                         time_extracted=extraction_time)
-                    #TODO: break if count equals or greater than number to avoid whole process timing out.
                     if Context.counts[stream_id] >= 5000:
                         LOGGER.info(f"Count: {Context.counts[stream_id]}")
                         break
