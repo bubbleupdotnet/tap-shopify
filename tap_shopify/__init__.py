@@ -201,6 +201,9 @@ def sync():
                                         rec,
                                         time_extracted=extraction_time)
                     #TODO: break if count equals or greater than number to avoid whole process timing out.
+                    if Context.counts[stream_id] >= 5000:
+                        LOGGER.info(f"Count: {Context.counts[stream_id]}")
+                        break
                     Context.counts[stream_id] += 1
         except ShopifyAPIError as e:
             if stream_id == 'fulfillment_orders' and 'Access denied' in str(e.__cause__):
