@@ -267,8 +267,8 @@ def main():
     except Exception as exc:
         raise ShopifyError(exc) from exc
     
-def log_identify(msg):
-    LOGGER.info(f"MYSHOPIFY_NAME: {MYSHOPIFY_NAME} - STREAM_NAME: {STREAM_NAME} - {msg}")
+def log_identify(msg, stream_id="", stream_count=""):
+    LOGGER.info(f"MYSHOPIFY_NAME: {MYSHOPIFY_NAME} - STREAM_NAME: {STREAM_NAME} - {msg}",stream_id,stream_count)
 
 if __name__ == "__main__":
     main()
