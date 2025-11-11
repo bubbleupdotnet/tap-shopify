@@ -23,6 +23,7 @@ UNSUPPORTED_FIELDS = {"author"}
 
 MYSHOPIFY_NAME = os.environ.get('MYSHOPIFY_NAME')
 STREAM_NAME = os.environ.get('STREAM_NAME')
+prelog_message = f"MYSHOPIFY_NAME: {MYSHOPIFY_NAME} - STREAM_NAME: {STREAM_NAME} - "
 
 @shopify_error_handling
 def initialize_shopify_client():
@@ -153,10 +154,10 @@ def sync():
     try:
         with open(file_path, 'r') as f:
             state = json.load(f)
-            log_identify(f"STATE: {state}")
+            LOGGER.info(f"{prelog_message} STATE: {state}")
             Context.state = state
     except Exception as e:
-        LOGGER.warning(f"NO STATE FILE: {e}")
+        LOGGER.warning(f"{prelog_message} NO STATE FILE: {e}")
         #LOGGER.warning("No state file")
 
     # If there is a currently syncing stream bookmark, shuffle the
@@ -180,10 +181,10 @@ def sync():
         stream = Context.stream_objects[stream_id]()
 
         if not Context.is_selected(stream_id):
-            log_identify('Skipping stream: %s', stream_id)
+            LOGGER.info(f"{prelog_message} Skipping stream: %s", stream_id)
             continue
 
-        log_identify('Syncing stream: %s', stream_id)
+        LOGGER.info(f"{prelog_message} Syncing stream: %s", stream_id)
 
         if not Context.state.get('bookmarks'):
             Context.state['bookmarks'] = {}
@@ -204,7 +205,7 @@ def sync():
                                         rec,
                                         time_extracted=extraction_time)
                     if Context.counts[stream_id] >= 10000:
-                        log_identify(f"Count: {Context.counts[stream_id]}")
+                        LOGGER.info(f"{prelog_message} Count: {Context.counts[stream_id]}")
                         break
                     Context.counts[stream_id] += 1
         except ShopifyAPIError as e:
@@ -216,10 +217,10 @@ def sync():
         Context.state['bookmarks'].pop('currently_sync_stream')
         singer.write_state(Context.state)
 
-    log_identify('----------------------')
+    LOGGER.info(f"{prelog_message} ----------------------")
     for stream_id, stream_count in Context.counts.items():
-        log_identify('%s: %d', stream_id, stream_count)
-    log_identify('----------------------')
+        LOGGER.info(f"{prelog_message} %s: %d", stream_id, stream_count)
+    LOGGER.info(f"{prelog_message} ----------------------")
 
     if require_reauth:
         raise ShopifyAPIError("Required scopes are missing for the `fulfillment_orders` stream. " \
@@ -266,9 +267,6 @@ def main():
         raise error
     except Exception as exc:
         raise ShopifyError(exc) from exc
-    
-def log_identify(msg, stream_id="", stream_count=""):
-    LOGGER.info(f"MYSHOPIFY_NAME: {MYSHOPIFY_NAME} - STREAM_NAME: {STREAM_NAME} - {msg}",stream_id,stream_count)
 
 if __name__ == "__main__":
     main()
