@@ -41,6 +41,7 @@ class Payouts(Stream):
                     obj = self.transform_object(edge.get("node"))
                     replication_value = utils.strptime_to_utc(obj[self.replication_key])
                     current_bookmark = max(current_bookmark, replication_value)
+                    LOGGER.info(obj)
                     yield obj
 
                 page_info =  child_data.get("pageInfo")
