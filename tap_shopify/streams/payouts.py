@@ -20,7 +20,7 @@ class Payouts(Stream):
         sync_start = utils.now().replace(microsecond=0)
         last_updated_at = self.get_bookmark() - timedelta(minutes=1)
         current_bookmark = last_updated_at
-        query = self.remove_fields_from_query(Context.get_unselected_fields(self.name))
+        query = self.remove_fields_from_query([])
         LOGGER.info("GraphQL query for stream '%s': %s", self.name, ' '.join(query.split()))
 
         while last_updated_at < sync_start:
