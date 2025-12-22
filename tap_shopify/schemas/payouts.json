@@ -23,8 +23,9 @@
                 "amount": {
                     "type": [
                         "null",
-                        "number"
-                    ]
+                        "string"
+                    ],
+                    "format": "singer.decimal"
                 },
                 "currencyCode": {
                     "type": [
@@ -55,8 +56,9 @@
                 "amount": {
                     "type": [
                         "null",
-                        "number"
-                    ]
+                        "string"
+                    ],
+                    "format": "singer.decimal"
                 },
                 "currencyCode": {
                     "type": [
@@ -87,8 +89,9 @@
                         "amount": {
                             "type": [
                                 "null",
-                                "number"
-                            ]
+                                "string"
+                            ],
+                            "format": "singer.decimal"
                         }
                     }
                 },
@@ -107,8 +110,9 @@
                         "amount": {
                             "type": [
                                 "null",
-                                "number"
-                            ]
+                                "string"
+                            ],
+                            "format": "singer.decimal"
                         }
                     }
                 },
@@ -127,8 +131,9 @@
                         "amount": {
                             "type": [
                                 "null",
-                                "number"
-                            ]
+                                "string"
+                            ],
+                            "format": "singer.decimal"
                         }
                     }
                 },
@@ -147,8 +152,9 @@
                         "amount": {
                             "type": [
                                 "null",
-                                "number"
-                            ]
+                                "string"
+                            ],
+                            "format": "singer.decimal"
                         }
                     }
                 },
@@ -167,8 +173,9 @@
                         "amount": {
                             "type": [
                                 "null",
-                                "number"
-                            ]
+                                "string"
+                            ],
+                            "format": "singer.decimal"
                         }
                     }
                 },
@@ -187,8 +194,9 @@
                         "amount": {
                             "type": [
                                 "null",
-                                "number"
-                            ]
+                                "string"
+                            ],
+                            "format": "singer.decimal"
                         }
                     }
                 },
@@ -207,8 +215,9 @@
                         "amount": {
                             "type": [
                                 "null",
-                                "number"
-                            ]
+                                "string"
+                            ],
+                            "format": "singer.decimal"
                         }
                     }
                 },
@@ -227,8 +236,9 @@
                         "amount": {
                             "type": [
                                 "null",
-                                "number"
-                            ]
+                                "string"
+                            ],
+                            "format": "singer.decimal"
                         }
                     }
                 },
@@ -247,8 +257,9 @@
                         "amount": {
                             "type": [
                                 "null",
-                                "number"
-                            ]
+                                "string"
+                            ],
+                            "format": "singer.decimal"
                         }
                     }
                 },
@@ -267,8 +278,9 @@
                         "amount": {
                             "type": [
                                 "null",
-                                "number"
-                            ]
+                                "string"
+                            ],
+                            "format": "singer.decimal"
                         }
                     }
                 },
@@ -287,8 +299,9 @@
                         "amount": {
                             "type": [
                                 "null",
-                                "number"
-                            ]
+                                "string"
+                            ],
+                            "format": "singer.decimal"
                         }
                     }
                 },
@@ -307,8 +320,9 @@
                         "amount": {
                             "type": [
                                 "null",
-                                "number"
-                            ]
+                                "string"
+                            ],
+                            "format": "singer.decimal"
                         }
                     }
                 }
