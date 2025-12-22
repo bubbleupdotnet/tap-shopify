@@ -23,7 +23,7 @@
                 "amount": {
                     "type": [
                         "null",
-                        "string"
+                        "number"
                     ],
                     "format": "singer.decimal"
                 },
@@ -56,7 +56,7 @@
                 "amount": {
                     "type": [
                         "null",
-                        "string"
+                        "number"
                     ],
                     "format": "singer.decimal"
                 },
@@ -89,7 +89,7 @@
                         "amount": {
                             "type": [
                                 "null",
-                                "string"
+                                "number"
                             ],
                             "format": "singer.decimal"
                         }
@@ -110,7 +110,7 @@
                         "amount": {
                             "type": [
                                 "null",
-                                "string"
+                                "number"
                             ],
                             "format": "singer.decimal"
                         }
@@ -131,7 +131,7 @@
                         "amount": {
                             "type": [
                                 "null",
-                                "string"
+                                "number"
                             ],
                             "format": "singer.decimal"
                         }
@@ -152,7 +152,7 @@
                         "amount": {
                             "type": [
                                 "null",
-                                "string"
+                                "number"
                             ],
                             "format": "singer.decimal"
                         }
@@ -173,7 +173,7 @@
                         "amount": {
                             "type": [
                                 "null",
-                                "string"
+                                "number"
                             ],
                             "format": "singer.decimal"
                         }
@@ -194,7 +194,7 @@
                         "amount": {
                             "type": [
                                 "null",
-                                "string"
+                                "number"
                             ],
                             "format": "singer.decimal"
                         }
@@ -215,7 +215,7 @@
                         "amount": {
                             "type": [
                                 "null",
-                                "string"
+                                "number"
                             ],
                             "format": "singer.decimal"
                         }
@@ -236,7 +236,7 @@
                         "amount": {
                             "type": [
                                 "null",
-                                "string"
+                                "number"
                             ],
                             "format": "singer.decimal"
                         }
@@ -257,7 +257,7 @@
                         "amount": {
                             "type": [
                                 "null",
-                                "string"
+                                "number"
                             ],
                             "format": "singer.decimal"
                         }
@@ -278,7 +278,7 @@
                         "amount": {
                             "type": [
                                 "null",
-                                "string"
+                                "number"
                             ],
                             "format": "singer.decimal"
                         }
@@ -299,7 +299,7 @@
                         "amount": {
                             "type": [
                                 "null",
-                                "string"
+                                "number"
                             ],
                             "format": "singer.decimal"
                         }
@@ -320,7 +320,7 @@
                         "amount": {
                             "type": [
                                 "null",
-                                "string"
+                                "number"
                             ],
                             "format": "singer.decimal"
                         }
