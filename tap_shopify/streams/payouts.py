@@ -161,4 +161,46 @@ class Payouts(Stream):
             }
         """
     
+    @staticmethod
+    def fetch_paid_payout_ids(bookmark_dt, sync_start):
+        """
+        Fetch all PAID payout legacy IDs between bookmark and now.
+        Returns list of (legacy_id, issuedAt_datetime) sorted by issuedAt ascending.
+        Does NOT emit Singer records — this is a helper for BT streams.
+        """
+        payouts_stream = Payouts()
+        query = payouts_stream.remove_fields_from_query([])
+        last_updated_at = bookmark_dt - timedelta(minutes=1)
+        paid_payouts = []
+
+        while last_updated_at < sync_start:
+            date_window_end = last_updated_at + timedelta(days=payouts_stream.date_window_size)
+            query_end = min(sync_start, date_window_end)
+
+            has_next_page = True
+            cursor = None
+
+            while has_next_page:
+                query_params = payouts_stream.get_query_params(last_updated_at, query_end, cursor)
+                with metrics.http_request_timer("payouts_prefetch"):
+                    data = payouts_stream.call_api(query_params, query=query)
+
+                child_data = data.get(payouts_stream.child_data_key, {})
+                for edge in child_data.get("edges", []):
+                    node = edge.get("node", {})
+                    if node.get("status") == "PAID":
+                        gid = node["id"]
+                        legacy_id = gid.split("/")[-1]
+                        issued_at = utils.strptime_to_utc(node["issuedAt"])
+                        paid_payouts.append((legacy_id, issued_at))
+
+                page_info = child_data.get("pageInfo")
+                cursor, has_next_page = page_info.get("endCursor"), page_info.get("hasNextPage")
+
+            last_updated_at = query_end
+
+        paid_payouts.sort(key=lambda x: x[1])
+        LOGGER.info("Found %d PAID payouts since bookmark", len(paid_payouts))
+        return paid_payouts
+
 Context.stream_objects["payouts"] = Payouts
