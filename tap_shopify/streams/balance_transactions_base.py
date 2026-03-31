@@ -5,6 +5,7 @@ from singer import utils, get_logger, metrics
 LOGGER = get_logger()
 
 BOOKMARK_KEY = "payout_issuedAt"
+MAX_PAYOUTS_PER_RUN = 100
 
 
 class PayoutDrivenBTStream(Stream):
@@ -32,8 +33,13 @@ class PayoutDrivenBTStream(Stream):
             LOGGER.info("No new PAID payouts found since %s", bookmark_dt)
             return
 
+        LOGGER.info("Found %d PAID payouts (max %d per run)", len(paid_payouts), MAX_PAYOUTS_PER_RUN)
+
         # Phase 2: For each payout, query BTs by payout legacy ID
-        for legacy_id, issued_at in paid_payouts:
+        for payout_count, (legacy_id, issued_at) in enumerate(paid_payouts):
+            if payout_count >= MAX_PAYOUTS_PER_RUN:
+                LOGGER.info("Reached max payouts per run (%d), stopping.", MAX_PAYOUTS_PER_RUN)
+                break
             has_next_page = True
             cursor = None
 
