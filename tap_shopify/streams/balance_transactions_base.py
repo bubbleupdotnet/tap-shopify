@@ -33,6 +33,12 @@ class PayoutDrivenBTStream(Stream):
         # Phase 1: Fetch all PAID payout IDs since bookmark
         paid_payouts = Payouts.fetch_paid_payout_ids(bookmark_dt, sync_start)
 
+        # Filter out payouts at or before the bookmark — these were already
+        # fully processed in a prior run. The fetch uses a 1-minute lookback
+        # to avoid missing edge-case payouts, but we must not re-process
+        # completed ones or the 10k cap will cause an infinite loop.
+        paid_payouts = [(lid, iat) for lid, iat in paid_payouts if iat > bookmark_dt]
+
         if not paid_payouts:
             LOGGER.info("No new PAID payouts found since %s", bookmark_dt)
             return
