@@ -222,7 +222,13 @@ def sync():
     for stream_id, stream_count in Context.counts.items():
         status = "HIT CAP — will resume from last bookmark on next run" if stream_count >= 10000 else "completed"
         payout_ids = Context.payout_summaries.get(stream_id)
-        payout_summary = f" — {len(payout_ids)} payouts: {payout_ids}" if payout_ids is not None else ""
+        in_progress = Context.payout_in_progress.get(stream_id)
+        payout_parts = []
+        if payout_ids is not None:
+            payout_parts.append(f"{len(payout_ids)} payouts complete: {payout_ids}")
+        if in_progress:
+            payout_parts.append(f"in-progress: {in_progress}")
+        payout_summary = f" — {', '.join(payout_parts)}" if payout_parts else ""
         LOGGER.info(f"{prelog_message} %s: %d (%s)%s", stream_id, stream_count, status, payout_summary)
     LOGGER.info(f"{prelog_message} ----------------------")
 

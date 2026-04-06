@@ -11,6 +11,7 @@ class Context():
     stream_objects = {}
     counts = {}
     payout_summaries = {}
+    payout_in_progress = {}
 
     @classmethod
     def get_catalog_entry(cls, stream_name):

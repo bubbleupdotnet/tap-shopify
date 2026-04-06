@@ -54,6 +54,7 @@ class PayoutDrivenBTStream(Stream):
             cursor = None
 
             LOGGER.info("Fetching BTs for payout %s (issuedAt: %s)", legacy_id, issued_at)
+            Context.payout_in_progress[self.name] = legacy_id
 
             while has_next_page:
                 query_params = self.get_query_params_for_payout(legacy_id, cursor)
@@ -68,8 +69,9 @@ class PayoutDrivenBTStream(Stream):
                 page_info = child_data.get("pageInfo")
                 cursor, has_next_page = page_info.get("endCursor"), page_info.get("hasNextPage")
 
-            # Track this payout in the summary
+            # Track this payout in the summary and clear in-progress
             Context.payout_summaries[self.name].append(legacy_id)
+            Context.payout_in_progress.pop(self.name, None)
 
             # Bookmark after each fully-completed payout so progress is saved
             # even if the 10k record cap breaks the loop mid-run
