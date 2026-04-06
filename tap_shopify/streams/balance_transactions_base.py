@@ -1,5 +1,6 @@
 from tap_shopify.streams.base import Stream
 from tap_shopify.streams.payouts import Payouts
+from tap_shopify.context import Context
 from singer import utils, get_logger, metrics
 
 LOGGER = get_logger()
@@ -25,6 +26,9 @@ class PayoutDrivenBTStream(Stream):
         bookmark_dt = self.get_bookmark_by_name(BOOKMARK_KEY)
         query = self.remove_fields_from_query([])
         LOGGER.info("GraphQL query for stream '%s': %s", self.name, ' '.join(query.split()))
+
+        # Initialize payout summary tracking for this stream
+        Context.payout_summaries[self.name] = []
 
         # Phase 1: Fetch all PAID payout IDs since bookmark
         paid_payouts = Payouts.fetch_paid_payout_ids(bookmark_dt, sync_start)
@@ -57,6 +61,9 @@ class PayoutDrivenBTStream(Stream):
 
                 page_info = child_data.get("pageInfo")
                 cursor, has_next_page = page_info.get("endCursor"), page_info.get("hasNextPage")
+
+            # Track this payout in the summary
+            Context.payout_summaries[self.name].append(legacy_id)
 
             # Bookmark after each fully-completed payout so progress is saved
             # even if the 10k record cap breaks the loop mid-run

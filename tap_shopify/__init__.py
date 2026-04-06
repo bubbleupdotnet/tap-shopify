@@ -222,6 +222,9 @@ def sync():
     for stream_id, stream_count in Context.counts.items():
         status = "HIT CAP — will resume from last bookmark on next run" if stream_count >= 10000 else "completed"
         LOGGER.info(f"{prelog_message} %s: %d (%s)", stream_id, stream_count, status)
+        payout_ids = Context.payout_summaries.get(stream_id)
+        if payout_ids is not None:
+            LOGGER.info(f"{prelog_message}   %d payouts: %s", len(payout_ids), payout_ids)
     LOGGER.info(f"{prelog_message} ----------------------")
 
     if require_reauth:
