@@ -230,6 +230,9 @@ def sync():
             payout_parts.append(f"in-progress: {in_progress}")
         payout_summary = f" — {', '.join(payout_parts)}" if payout_parts else ""
         LOGGER.info(f"{prelog_message} %s: %d (%s)%s", stream_id, stream_count, status, payout_summary)
+        if stream_count >= 10000 and payout_ids is not None and len(payout_ids) == 0:
+            LOGGER.warning(f"{prelog_message} WARNING: 10k record cap hit with 0 payouts completed — a single payout has more BTs than the cap. "
+                           f"To unblock, temporarily increase the cap (hardcoded as 10000 in tap_shopify/__init__.py line ~207), push, run this store, then revert.")
     LOGGER.info(f"{prelog_message} ----------------------")
 
     if require_reauth:
