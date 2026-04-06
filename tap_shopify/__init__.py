@@ -205,7 +205,8 @@ def sync():
                                         rec,
                                         time_extracted=extraction_time)
                     if Context.counts[stream_id] >= 10000:
-                        LOGGER.info(f"{prelog_message} Count: {Context.counts[stream_id]}")
+                        bookmark_info = Context.state.get('bookmarks', {}).get(stream_id, {})
+                        LOGGER.info(f"{prelog_message} Hit 10,000 record cap. Bookmark state: {bookmark_info}")
                         break
                     Context.counts[stream_id] += 1
         except ShopifyAPIError as e:
@@ -219,7 +220,8 @@ def sync():
 
     LOGGER.info(f"{prelog_message} ----------------------")
     for stream_id, stream_count in Context.counts.items():
-        LOGGER.info(f"{prelog_message} %s: %d", stream_id, stream_count)
+        status = "HIT CAP" if stream_count >= 10000 else "completed"
+        LOGGER.info(f"{prelog_message} %s: %d (%s)", stream_id, stream_count, status)
     LOGGER.info(f"{prelog_message} ----------------------")
 
     if require_reauth:
