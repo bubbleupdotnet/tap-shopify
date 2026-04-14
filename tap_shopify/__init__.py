@@ -149,16 +149,7 @@ def sync():
     shop_attributes = initialize_shopify_client()
     sdc_fields = {"_sdc_shop_" + x: shop_attributes[x] for x in SDC_KEYS}
     require_reauth = False
-    state = None
-    file_path = "config/state.json"
-    try:
-        with open(file_path, 'r') as f:
-            state = json.load(f)
-            LOGGER.info(f"{prelog_message} STATE: {state}")
-            Context.state = state
-    except Exception as e:
-        LOGGER.warning(f"{prelog_message} NO STATE FILE: {e}")
-        #LOGGER.warning("No state file")
+    LOGGER.info(f"{prelog_message} STATE: {Context.state}")
 
     # If there is a currently syncing stream bookmark, shuffle the
     # stream order so it gets sync'd first
@@ -204,10 +195,6 @@ def sync():
                     singer.write_record(stream_id,
                                         rec,
                                         time_extracted=extraction_time)
-                    if Context.counts[stream_id] >= 10000:
-                        bookmark_info = Context.state.get('bookmarks', {}).get(stream_id, {})
-                        LOGGER.info(f"{prelog_message} Hit 10,000 record cap — stopping early, will resume on next run. Bookmark state: {bookmark_info}")
-                        break
                     Context.counts[stream_id] += 1
         except ShopifyAPIError as e:
             if stream_id == 'fulfillment_orders' and 'Access denied' in str(e.__cause__):
@@ -220,19 +207,7 @@ def sync():
 
     LOGGER.info(f"{prelog_message} ----------------------")
     for stream_id, stream_count in Context.counts.items():
-        status = "HIT CAP — will resume from last bookmark on next run" if stream_count >= 10000 else "completed"
-        payout_ids = Context.payout_summaries.get(stream_id)
-        in_progress = Context.payout_in_progress.get(stream_id)
-        payout_parts = []
-        if payout_ids is not None:
-            payout_parts.append(f"{len(payout_ids)} payouts complete: {payout_ids}")
-        if in_progress:
-            payout_parts.append(f"in-progress: {in_progress}")
-        payout_summary = f" — {', '.join(payout_parts)}" if payout_parts else ""
-        LOGGER.info(f"{prelog_message} %s: %d (%s)%s", stream_id, stream_count, status, payout_summary)
-        if stream_count >= 10000 and payout_ids is not None and len(payout_ids) == 0:
-            LOGGER.warning(f"{prelog_message} WARNING: 10k record cap hit with 0 payouts completed — a single payout has more BTs than the cap. "
-                           f"To unblock, temporarily increase the cap (hardcoded as 10000 in tap_shopify/__init__.py line ~207), push, run this store, then revert.")
+        LOGGER.info(f"{prelog_message} %s: %d", stream_id, stream_count)
     LOGGER.info(f"{prelog_message} ----------------------")
 
     if require_reauth:

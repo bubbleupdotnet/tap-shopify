@@ -7,6 +7,7 @@ LOGGER = get_logger()
 
 BOOKMARK_KEY = "payout_issuedAt"
 MAX_PAYOUTS_PER_RUN = 100
+MAX_RECORDS = 10000
 
 
 class PayoutDrivenBTStream(Stream):
@@ -20,6 +21,35 @@ class PayoutDrivenBTStream(Stream):
     data_key = "shopifyPaymentsAccount"
     child_data_key = "balanceTransactions"
     replication_key = "transactionDate"
+
+    def sync(self):
+        count = 0
+        try:
+            for obj in self.get_objects():
+                yield obj
+                count += 1
+                if count >= MAX_RECORDS:
+                    bookmark_info = Context.state.get('bookmarks', {}).get(self.name, {})
+                    LOGGER.info("Hit %d record cap — stopping early, will resume on next run. Bookmark state: %s", MAX_RECORDS, bookmark_info)
+                    return
+        finally:
+            self._log_payout_summary(count)
+
+    def _log_payout_summary(self, count):
+        status = "HIT CAP — will resume from last bookmark on next run" if count >= MAX_RECORDS else "completed"
+        payout_ids = Context.payout_summaries.get(self.name)
+        in_progress = Context.payout_in_progress.get(self.name)
+        payout_parts = []
+        if payout_ids is not None:
+            payout_parts.append(f"{len(payout_ids)} payouts complete: {payout_ids}")
+        if in_progress:
+            payout_parts.append(f"in-progress: {in_progress}")
+        payout_summary = f" — {', '.join(payout_parts)}" if payout_parts else ""
+        LOGGER.info("%s: %d (%s)%s", self.name, count, status, payout_summary)
+        if count >= MAX_RECORDS and payout_ids is not None and len(payout_ids) == 0:
+            LOGGER.warning("WARNING: %d record cap hit with 0 payouts completed — a single payout has more BTs than the cap. "
+                           "To unblock, temporarily increase MAX_RECORDS in %s, push, run this store, then revert.",
+                           MAX_RECORDS, __file__)
 
     def get_objects(self):
         sync_start = utils.now().replace(microsecond=0)
