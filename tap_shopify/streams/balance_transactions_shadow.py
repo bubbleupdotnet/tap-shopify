@@ -107,11 +107,13 @@ class BalanceTransactionsShadow(Stream):
         LOGGER.info("GraphQL query for stream '%s': %s", self.name, ' '.join(query.split()))
 
         window_start = bookmark_dt
+        # Extend boundary by 1 day so the final window includes today's payout_date
+        loop_end = sync_start + timedelta(days=1)
 
-        while window_start < sync_start:
+        while window_start < loop_end:
             window_end = window_start + timedelta(days=DATE_WINDOW_DAYS)
-            if window_end > sync_start:
-                window_end = sync_start
+            if window_end > loop_end:
+                window_end = loop_end
 
             start_date = window_start.strftime("%Y-%m-%d")
             end_date = window_end.strftime("%Y-%m-%d")
